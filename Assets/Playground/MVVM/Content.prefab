@@ -182,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 4
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1332f1f7d77b4025a4b802c4ea313482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ViewModel: {fileID: 11400000, guid: 98d3ca96568c943b2b14457502a7e6c2, type: 2}
+  persistedViewModel: {fileID: 11400000, guid: 98d3ca96568c943b2b14457502a7e6c2, type: 2}
   ViewModelProperty: Progress
   Target: {fileID: 1025845191087971024}
   TargetComponent: {fileID: 1025845191087971026}
@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 1025845191514162836}
   - component: {fileID: 1025845191514162838}
   - component: {fileID: 1025845191514162837}
+  - component: {fileID: 6405406102062596541}
   m_Layer: 5
   m_Name: TotalProgress
   m_TagString: Untagged
@@ -354,7 +355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: Name1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -423,7 +424,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1025845191514162837}
-    characterCount: 1
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -446,6 +447,23 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6405406102062596541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025845191514162835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1332f1f7d77b4025a4b802c4ea313482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  persistedViewModel: {fileID: 11400000, guid: 98d3ca96568c943b2b14457502a7e6c2, type: 2}
+  ViewModelProperty: Name
+  Target: {fileID: 1025845191514162835}
+  TargetComponent: {fileID: 1025845191514162837}
+  TargetComponentProperty: text
 --- !u!1 &1025845192122757807
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: ProgressData
   m_EditorClassIdentifier: 
   Progress:
-    value: 0
+    value: 1
+  Name:
+    value: 

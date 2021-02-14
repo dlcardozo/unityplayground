@@ -7,7 +7,7 @@ namespace Playground.MVVM
 {
     public static class Context
     {
-        public static ProgressViewModel ViewModel;
+        public static ProgressPersistedViewModel PersistedViewModel;
 
         public static void Start()
         {

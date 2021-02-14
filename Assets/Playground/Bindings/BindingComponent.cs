@@ -2,13 +2,14 @@ using System.Reflection;
 using Playground.ViewModels;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static System.Convert;
 
 namespace Playground.Bindings
 {
     public class BindingComponent : MonoBehaviour
     {
-        public ViewModel ViewModel;
+        [FormerlySerializedAs("ViewModel")] public PersistedViewModel persistedViewModel;
         public string ViewModelProperty;
 
         public GameObject Target;
@@ -30,12 +31,12 @@ namespace Playground.Bindings
             disposables.Clear();
             if (!IsValid()) return;
             
-            UpdateTargetComponent(new PropertyChanged(ViewModelProperty, ViewModel.GetValueOf(ViewModelProperty)));
+            UpdateTargetComponent(new PropertyChanged(ViewModelProperty, persistedViewModel.GetValueOf(ViewModelProperty)));
             BindToViewModel();
         }
 
         void BindToViewModel() =>
-            ViewModel.onPropertyChanged
+            persistedViewModel.onPropertyChanged
                 .Where(propertyChanged => propertyChanged.Property.Equals(ViewModelProperty))
                 .Subscribe(UpdateTargetComponent)
                 .AddTo(disposables);
@@ -55,7 +56,7 @@ namespace Playground.Bindings
             Target != null && 
             TargetComponent != null && 
             !string.IsNullOrEmpty(TargetComponentProperty) &&
-            ViewModel != null && 
+            persistedViewModel != null && 
             !string.IsNullOrEmpty(ViewModelProperty);
     }
 }
