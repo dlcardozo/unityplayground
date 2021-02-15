@@ -1,4 +1,4 @@
-namespace Playground.ViewModels.Tests
+namespace Playground.ViewModels.Wiring
 {
     public interface WireableViewModel
     {

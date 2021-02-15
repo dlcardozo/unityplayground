@@ -7,6 +7,6 @@ namespace Playground.ViewModels
     {
         object GetValue(FieldInfo fieldInfo, object viewModel);
 
-        IDisposable Subscribe(FieldInfo fieldInfo, object viewModel, Action<string, object> execute);
+        IDisposable SubscribeProperty(FieldInfo fieldInfo, object viewModel, Action<string, object> execute);
     }
 }
