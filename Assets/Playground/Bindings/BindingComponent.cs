@@ -2,7 +2,6 @@ using System.Reflection;
 using Playground.ViewModels;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Serialization;
 using static System.Convert;
 
 namespace Playground.Bindings
@@ -21,10 +20,7 @@ namespace Playground.Bindings
 
         void OnDestroy() => disposables.Clear();
 
-        public void OnValidate()
-        {
-            Initialize();
-        }
+        public void OnValidate() => Initialize();
 
         void Initialize()
         {

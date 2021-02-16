@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Playground.MVVM.ViewModels;
+using Playground.ViewModels;
 using Playground.ViewModels.Repositories;
 using Playground.ViewModels.Resolvers;
 using UniRx;
 
-namespace Playground.ViewModels.Infrastructure
+namespace Playground.Infrastructure
 {
     public class FixedPropertyResolverRepository : PropertyResolverRepository
     {
@@ -19,7 +21,9 @@ namespace Playground.ViewModels.Infrastructure
                 {typeof(StringReactiveProperty), new ReactivePropertyResolver<string>()},
                 {typeof(BoolReactiveProperty), new ReactivePropertyResolver<bool>()},
                 {typeof(LongReactiveProperty), new ReactivePropertyResolver<long>()},
-                {typeof(DoubleReactiveProperty), new ReactivePropertyResolver<double>()}
+                {typeof(DoubleReactiveProperty), new ReactivePropertyResolver<double>()},
+                {typeof(List<RuntimeViewModel>), new ListPropertyResolver<RuntimeViewModel>()},
+                {typeof(List<ProgressItemViewModel>), new ListPropertyResolver<RuntimeViewModel>()}
             };
         }
 
