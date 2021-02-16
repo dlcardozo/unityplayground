@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using NSubstitute.Core;
-using Playground.ViewModels.Resolvers;
-using UniRx;
+using Playground.ViewModels.Repositories;
 
 namespace Playground.ViewModels.Wiring
 {
@@ -25,7 +23,7 @@ namespace Playground.ViewModels.Wiring
                 .ToDictionary(field => field.Name);
         }
 
-        public List<WireField> Wire()
+        public List<WireField> Wire(Action<string, object> doOnPropertySubscribe)
         {
             var result = new List<WireField>();
 
@@ -34,19 +32,26 @@ namespace Playground.ViewModels.Wiring
                 var propertyResolver = propertyResolverRepository.GetBy(fieldTuple.Value.FieldType);
 
                 if (propertyResolver != null)
-                {
-                    propertyResolver.SubscribeProperty(fieldTuple.Value, viewModel, (s, o) => { });
-                    result.Add(new WireField { Field = fieldTuple.Key});
-                }
+                    result.Add(CreateWireField(doOnPropertySubscribe, fieldTuple, propertyResolver));
             }
-                
-
+            
             return result;
         }
-    }
 
-    public struct WireField
-    {
-        public string Field;
+        WireField CreateWireField(
+            Action<string, object> doOnPropertySubscribe,
+            KeyValuePair<string, FieldInfo> fieldTuple, 
+            PropertyResolver propertyResolver
+        ) => new WireField
+            {
+                Field = fieldTuple.Key,
+                Subscription =
+                    propertyResolver.SubscribeProperty(fieldTuple.Value, viewModel, doOnPropertySubscribe)
+            };
+
+        public object GetValueOf(string property) =>
+            propertyResolverRepository
+                .GetBy(fields[property].FieldType)
+                .GetValue(fields[property], viewModel);
     }
 }

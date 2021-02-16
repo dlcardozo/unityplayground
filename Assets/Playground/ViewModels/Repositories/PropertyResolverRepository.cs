@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Playground.ViewModels.Resolvers;
 using UniRx;
 
-namespace Playground.ViewModels
+namespace Playground.ViewModels.Repositories
 {
     public interface PropertyResolverRepository
     {
         PropertyResolver GetBy(Type type);
-
-        IDisposable SubscribeProperty(Type propertyType, FieldInfo property, ViewModel viewModel, Action<string,object> doAction);
     }
 
     public class InMemoryPropertyResolverRepository : PropertyResolverRepository
@@ -34,12 +31,5 @@ namespace Playground.ViewModels
             propertiesResolver.ContainsKey(type) 
                 ? propertiesResolver[type] 
                 : null;
-
-        public IDisposable SubscribeProperty(
-            Type propertyType, 
-            FieldInfo property,
-            ViewModel viewModel,
-            Action<string, object> doAction
-        ) => GetBy(propertyType).SubscribeProperty(property, viewModel, doAction);
     }
 }

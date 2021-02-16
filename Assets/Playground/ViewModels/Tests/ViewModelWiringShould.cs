@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NSubstitute;
+using NSubstitute.Core;
 using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
+using Playground.ViewModels.Repositories;
 using Playground.ViewModels.Resolvers;
 using Playground.ViewModels.Wiring;
 using UniRx;
@@ -28,14 +30,17 @@ namespace Playground.ViewModels.Tests
             propertyResolverRepository = Substitute.For<PropertyResolverRepository>();
             somePropertyResolver = Substitute.For<PropertyResolver>();
             viewModelWiring = new ViewModelWiring(viewModel, propertyResolverRepository);
+
+            somePropertyResolver.SubscribeProperty(Arg.Any<FieldInfo>(), Arg.Any<object>(),
+                Arg.Any<Action<string, object>>()).Returns(Disposable.Empty);
         }
         
         [Test]
         public void WireViewModelProperty()
         {
-            GivenASupportedProperty();
+            GivenAPropertyResolver();
             WhenWire();
-            ThenWireResultIs(new List<WireField>() { new WireField { Field = "SomeProperty"}});
+            ThenWireResultIs(new List<WireField>() { new WireField { Field = "SomeProperty", Subscription = Disposable.Empty}});
         }
 
         [Test]
@@ -54,24 +59,26 @@ namespace Playground.ViewModels.Tests
             ThenSubscribePropertyIsCalled();
         }
 
-        void GivenAPropertyResolver()
+        [Test]
+        public void ReturnValueOfProperty()
         {
+            GivenAPropertyResolver();
+            WhenGetValueOf("SomeProperty");
+            somePropertyResolver.Received(1).GetValue(Arg.Any<FieldInfo>(), Arg.Is(viewModel));
+        }
+
+        void GivenAPropertyResolver() =>
             propertyResolverRepository
                 .GetBy(typeof(ReactiveProperty<int>))
                 .Returns(somePropertyResolver);
-        }
 
         void GivenNoSupportedProperty() =>
             propertyResolverRepository
                 .GetBy(typeof(ReactiveProperty<int>))
                 .ReturnsNull();
 
-        void GivenASupportedProperty() =>
-            propertyResolverRepository
-                .GetBy(typeof(ReactiveProperty<int>))
-                .Returns(new ReactivePropertyResolver<int>());
-
-        void WhenWire() => wireResult = viewModelWiring.Wire();
+        void WhenWire() => wireResult = viewModelWiring.Wire((s, o) => { });
+        void WhenGetValueOf(string property) => viewModelWiring.GetValueOf(property);
 
         void ThenWireResultIs(List<WireField> expected) => 
             Assert.IsTrue(wireResult.SequenceEqual(expected));
