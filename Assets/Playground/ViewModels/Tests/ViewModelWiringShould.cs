@@ -40,11 +40,11 @@ namespace Playground.ViewModels.Tests
         {
             GivenAPropertyResolver();
             WhenWire();
-            ThenWireResultIs(new List<WireField>() { new WireField { Field = "SomeProperty", Subscription = Disposable.Empty}});
+            ThenWireResultIs(new List<WireField> { new WireField { Field = "SomeProperty", Subscription = Disposable.Empty}});
         }
 
         [Test]
-        public void NotWireUnknownProperties()
+        public void DoNotWireUnknownProperties()
         {
             GivenNoSupportedProperty();
             WhenWire();
@@ -52,7 +52,7 @@ namespace Playground.ViewModels.Tests
         }
 
         [Test]
-        public void SubscribeToPropertyChange()
+        public void SubscribeToPropertyChanges()
         {
             GivenAPropertyResolver();
             WhenWire();
@@ -64,7 +64,7 @@ namespace Playground.ViewModels.Tests
         {
             GivenAPropertyResolver();
             WhenGetValueOf("SomeProperty");
-            somePropertyResolver.Received(1).GetValue(Arg.Any<FieldInfo>(), Arg.Is(viewModel));
+            ThenGetValueIsCalled();
         }
 
         void GivenAPropertyResolver() =>
@@ -78,6 +78,7 @@ namespace Playground.ViewModels.Tests
                 .ReturnsNull();
 
         void WhenWire() => wireResult = viewModelWiring.Wire((s, o) => { });
+
         void WhenGetValueOf(string property) => viewModelWiring.GetValueOf(property);
 
         void ThenWireResultIs(List<WireField> expected) => 
@@ -90,5 +91,8 @@ namespace Playground.ViewModels.Tests
                     Arg.Any<ViewModel>(),
                     Arg.Any<Action<string, object>>()
                 );
+
+        void ThenGetValueIsCalled() => 
+            somePropertyResolver.Received(1).GetValue(Arg.Any<FieldInfo>(), Arg.Is(viewModel));
     }
 }

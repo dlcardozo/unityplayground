@@ -23,19 +23,25 @@ namespace Playground.ViewModels.Wiring
                 .ToDictionary(field => field.Name);
         }
 
-        public List<WireField> Wire(Action<string, object> doOnPropertySubscribe)
+        public object GetValueOf(string property) =>
+            propertyResolverRepository
+                .GetBy(fields[property].FieldType)
+                .GetValue(fields[property], viewModel);
+
+        public List<WireField> Wire(Action<string, object> doOnPropertySubscribe) =>
+            fields
+                .ToList()
+                .Select(fieldTuple => GetWireFieldFromField(doOnPropertySubscribe, fieldTuple))
+                .Where(wireField => !wireField.Equals(WireField.Empty))
+                .ToList();
+
+        WireField GetWireFieldFromField(Action<string, object> doOnPropertySubscribe, KeyValuePair<string, FieldInfo> fieldTuple)
         {
-            var result = new List<WireField>();
+            var propertyResolver = propertyResolverRepository.GetBy(fieldTuple.Value.FieldType);
 
-            foreach (var fieldTuple in fields)
-            {
-                var propertyResolver = propertyResolverRepository.GetBy(fieldTuple.Value.FieldType);
-
-                if (propertyResolver != null)
-                    result.Add(CreateWireField(doOnPropertySubscribe, fieldTuple, propertyResolver));
-            }
-            
-            return result;
+            return propertyResolver != null
+                ? CreateWireField(doOnPropertySubscribe, fieldTuple, propertyResolver)
+                : WireField.Empty;
         }
 
         WireField CreateWireField(
@@ -48,10 +54,5 @@ namespace Playground.ViewModels.Wiring
                 Subscription =
                     propertyResolver.SubscribeProperty(fieldTuple.Value, viewModel, doOnPropertySubscribe)
             };
-
-        public object GetValueOf(string property) =>
-            propertyResolverRepository
-                .GetBy(fields[property].FieldType)
-                .GetValue(fields[property], viewModel);
     }
 }

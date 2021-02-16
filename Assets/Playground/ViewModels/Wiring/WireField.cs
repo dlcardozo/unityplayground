@@ -6,5 +6,7 @@ namespace Playground.ViewModels.Wiring
     {
         public string Field;
         public IDisposable Subscription;
+        
+        public static WireField Empty => new WireField();
     }
 }
