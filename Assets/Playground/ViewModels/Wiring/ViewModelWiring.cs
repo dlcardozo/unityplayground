@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Playground.ViewModels.Repositories;
+using Playground.ViewModels.Resolvers;
 
 namespace Playground.ViewModels.Wiring
 {

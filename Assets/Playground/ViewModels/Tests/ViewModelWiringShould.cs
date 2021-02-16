@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NSubstitute;
-using NSubstitute.Core;
 using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
 using Playground.ViewModels.Repositories;
 using Playground.ViewModels.Resolvers;
 using Playground.ViewModels.Wiring;
 using UniRx;
-using static Playground.ViewModels.Tests.ViewModelMother;
+using static Playground.ViewModels.Tests.Mothers.ViewModelMother;
 
 namespace Playground.ViewModels.Tests
 {

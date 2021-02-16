@@ -1,6 +1,6 @@
 namespace Playground.ViewModels
 {
-    public struct PropertyChanged
+    public readonly struct PropertyChanged
     {
         public readonly string Property;
         public readonly object Value;

@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Playground.ViewModels
+namespace Playground.ViewModels.Resolvers
 {
     public interface PropertyResolver
     {

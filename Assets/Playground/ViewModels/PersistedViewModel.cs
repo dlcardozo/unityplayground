@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Playground.ViewModels.Repositories;
-using Playground.ViewModels.Resolvers;
+using Playground.ViewModels.Infrastructure;
 using Playground.ViewModels.Wiring;
 using UniRx;
 using UnityEngine;
@@ -21,7 +16,7 @@ namespace Playground.ViewModels
         {
             onPropertyChanged = new Subject<PropertyChanged>();
             
-            viewModelWiring = new ViewModelWiring(this, new InMemoryPropertyResolverRepository());
+            viewModelWiring = new ViewModelWiring(this, new FixedPropertyResolverRepository());
             
             viewModelWiring
                 .Wire(NotifyPropertyChange)

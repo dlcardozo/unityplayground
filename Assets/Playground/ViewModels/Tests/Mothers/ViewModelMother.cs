@@ -1,6 +1,6 @@
 using UniRx;
 
-namespace Playground.ViewModels.Tests
+namespace Playground.ViewModels.Tests.Mothers
 {
     public static class ViewModelMother
     {
