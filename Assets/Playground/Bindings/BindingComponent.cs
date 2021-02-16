@@ -9,7 +9,7 @@ namespace Playground.Bindings
 {
     public class BindingComponent : MonoBehaviour
     {
-        [FormerlySerializedAs("ViewModel")] public PersistedViewModel persistedViewModel;
+        public PersistedViewModel ViewModel;
         public string ViewModelProperty;
 
         public GameObject Target;
@@ -31,12 +31,12 @@ namespace Playground.Bindings
             disposables.Clear();
             if (!IsValid()) return;
             
-            UpdateTargetComponent(new PropertyChanged(ViewModelProperty, persistedViewModel.GetValueOf(ViewModelProperty)));
+            UpdateTargetComponent(new PropertyChanged(ViewModelProperty, ViewModel.GetValueOf(ViewModelProperty)));
             BindToViewModel();
         }
 
         void BindToViewModel() =>
-            persistedViewModel.onPropertyChanged
+            ViewModel.onPropertyChanged
                 .Where(propertyChanged => propertyChanged.Property.Equals(ViewModelProperty))
                 .Subscribe(UpdateTargetComponent)
                 .AddTo(disposables);
@@ -56,7 +56,7 @@ namespace Playground.Bindings
             Target != null && 
             TargetComponent != null && 
             !string.IsNullOrEmpty(TargetComponentProperty) &&
-            persistedViewModel != null && 
+            ViewModel != null && 
             !string.IsNullOrEmpty(ViewModelProperty);
     }
 }
