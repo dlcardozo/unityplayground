@@ -734,6 +734,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ViewModel: {fileID: 11400000, guid: 98d3ca96568c943b2b14457502a7e6c2, type: 2}
   ViewModelProperty: Items
-  Template: {fileID: 2944090017993586228, guid: 66d1545345dff4c6380a0ce39e93ec23,
+  Template: {fileID: 3204233271328476743, guid: 66d1545345dff4c6380a0ce39e93ec23,
     type: 3}
   Container: {fileID: 7287492411489819631}

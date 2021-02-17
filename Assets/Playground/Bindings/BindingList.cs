@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Playground.MVVM.ViewModels;
 using Playground.ViewModels;
@@ -12,16 +13,16 @@ namespace Playground.Bindings
         public string ViewModelProperty;
         public BindingListItem Template;
         public GameObject Container;
-        
-        
+
+
         CompositeDisposable disposables = new CompositeDisposable();
 
-        public void OnValidate() => Initialize();
+        public void Start() => Initialize();
 
         void Initialize()
         {
             if (!IsValid()) return;
-            
+
             disposables.Clear();
 
             InstantiateTemplates();
@@ -29,7 +30,9 @@ namespace Playground.Bindings
 
         void InstantiateTemplates()
         {
-            ((List<ProgressItemViewModel>)ViewModel.GetValueOf(ViewModelProperty))
+            Container.DestroyChildren();
+
+            ((List<ProgressItemViewModel>) ViewModel.GetValueOf(ViewModelProperty))
                 .ForEach(x =>
                 {
                     var child = Instantiate(Template, Container.transform);
@@ -38,8 +41,20 @@ namespace Playground.Bindings
                 });
         }
 
-        bool IsValid() => 
-            ViewModel != null && 
+        bool IsValid() =>
+            ViewModel != null &&
             !string.IsNullOrEmpty(ViewModelProperty);
+    }
+
+    public static class GameObjectExtensions
+    {
+        public static void DestroyChildren(this GameObject source)
+        {
+            int childs = source.transform.childCount;
+            for (int i = childs - 1; i >= 0; i--)
+            {
+                GameObject.DestroyImmediate(source.transform.GetChild(i).gameObject);
+            }
+        }
     }
 }
