@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Playground.MVVM.ViewModels;
-using Playground.ViewModels;
-using Playground.ViewModels.Repositories;
-using Playground.ViewModels.Resolvers;
+using Playground.Framework.Repositories;
+using Playground.Framework.Resolvers;
 using UniRx;
 
 namespace Playground.Infrastructure

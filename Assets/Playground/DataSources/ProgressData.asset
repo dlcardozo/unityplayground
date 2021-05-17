@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ProgressData
   m_EditorClassIdentifier: 
   Progress:
-    value: 10
+    value: 2147483647
   Name:
-    value: Ok this is it
+    value: asdsadsdsasa
