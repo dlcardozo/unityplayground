@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Reflection;
 using Playground.ViewModels;
+using Playground.ViewModels.Resolvers;
 using UniRx;
 using UnityEngine;
 using static System.Convert;
@@ -26,6 +28,8 @@ namespace Playground.Bindings
         {
             disposables.Clear();
             if (!IsValid()) return;
+
+            PropertyHelper.GetProperties(TargetComponent.GetType());
             
             UpdateTargetComponent(new PropertyChanged(ViewModelProperty, ViewModel.GetValueOf(ViewModelProperty)));
             BindToViewModel();
@@ -39,14 +43,10 @@ namespace Playground.Bindings
 
         void UpdateTargetComponent(PropertyChanged changed)
         {
-            if (GetTargetComponentPropertyInfo() != null)
-                GetTargetComponentPropertyInfo()
-                    .SetValue(TargetComponent, ChangeType(changed.Value, GetTargetComponentPropertyInfo().PropertyType));
+            var updateProperty = PropertyHelper.GetProperties(TargetComponent.GetType())
+                .First(property => property.Name.Equals(TargetComponentProperty));
+            updateProperty.Setter(TargetComponent, ChangeType(changed.Value, updateProperty.PropertyType));
         }
-
-        PropertyInfo GetTargetComponentPropertyInfo() => 
-            targetComponentPropertyInfo ?? 
-            (targetComponentPropertyInfo = TargetComponent.GetType().GetProperty(TargetComponentProperty));
 
         bool IsValid() => 
             Target != null && 
