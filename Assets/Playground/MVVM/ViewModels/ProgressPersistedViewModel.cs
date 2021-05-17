@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Playground.Infrastructure;
 using Playground.ViewModels;
 using UniRx;
@@ -12,15 +11,8 @@ namespace Playground.MVVM.ViewModels
         public IntReactiveProperty Progress = new IntReactiveProperty(0);
         public StringReactiveProperty Name = new StringReactiveProperty(string.Empty);
         
-        public List<ProgressItemViewModel> Items;
-
         public ProgressPersistedViewModel() : base(new FixedPropertyResolverRepository())
         {
-            Items = new List<ProgressItemViewModel>()
-            {
-                new ProgressItemViewModel(new FixedPropertyResolverRepository()),
-                new ProgressItemViewModel(new FixedPropertyResolverRepository())
-            };
         }
     }
 }

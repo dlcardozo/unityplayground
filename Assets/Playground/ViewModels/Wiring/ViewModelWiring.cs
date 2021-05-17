@@ -18,7 +18,7 @@ namespace Playground.ViewModels.Wiring
         {
             this.viewModel = viewModel;
             this.propertyResolverRepository = propertyResolverRepository;
-
+            
             fields = this.viewModel.GetType()
                 .GetFields()
                 .ToDictionary(field => field.Name);

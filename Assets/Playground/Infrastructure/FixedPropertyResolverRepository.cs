@@ -22,8 +22,6 @@ namespace Playground.Infrastructure
                 {typeof(BoolReactiveProperty), new ReactivePropertyResolver<bool>()},
                 {typeof(LongReactiveProperty), new ReactivePropertyResolver<long>()},
                 {typeof(DoubleReactiveProperty), new ReactivePropertyResolver<double>()},
-                {typeof(List<RuntimeViewModel>), new ListPropertyResolver<RuntimeViewModel>()},
-                {typeof(List<ProgressItemViewModel>), new ListPropertyResolver<RuntimeViewModel>()}
             };
         }
 

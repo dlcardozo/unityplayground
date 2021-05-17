@@ -13,15 +13,6 @@ MonoBehaviour:
   m_Name: ProgressData
   m_EditorClassIdentifier: 
   Progress:
-    value: 4
+    value: 10
   Name:
-    value: NameOf
-  Items:
-  - Initial:
-      value: 0
-    Final:
-      value: 0
-  - Initial:
-      value: 0
-    Final:
-      value: 0
+    value: Ok this is it

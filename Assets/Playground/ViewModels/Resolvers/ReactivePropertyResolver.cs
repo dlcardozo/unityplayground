@@ -13,13 +13,4 @@ namespace Playground.ViewModels.Resolvers
             ((IReactiveProperty<T>) fieldInfo.GetValue(viewModel))
             .Subscribe(value => execute(fieldInfo.Name, value));
     }
-
-    public class ListPropertyResolver<T> : PropertyResolver
-    {
-        public object GetValue(FieldInfo fieldInfo, object viewModel) =>
-            fieldInfo.GetValue(viewModel);
-
-        public IDisposable SubscribeProperty(FieldInfo fieldInfo, object viewModel, Action<string, object> execute) => 
-            Disposable.Empty;
-    }
 }
