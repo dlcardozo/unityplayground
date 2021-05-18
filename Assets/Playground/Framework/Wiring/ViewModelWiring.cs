@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Playground.Framework.Properties;
 using Playground.Framework.Repositories;
-using Playground.Framework.Resolvers;
 
 namespace Playground.Framework.Wiring
 {

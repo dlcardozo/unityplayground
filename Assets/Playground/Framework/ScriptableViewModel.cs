@@ -1,19 +1,18 @@
-using System;
 using Playground.Framework.Repositories;
 using Playground.Framework.Wiring;
 using UniRx;
+using UnityEngine;
 
 namespace Playground.Framework
 {
-    [Serializable]
-    public class RuntimeViewModel : ViewModel
+    public class ScriptableViewModel : ScriptableObject, ViewModel
     {
         public ISubject<PropertyChanged> onPropertyChanged { get; set; }
 
         readonly CompositeDisposable disposables = new CompositeDisposable();
         readonly ViewModelWiring viewModelWiring;
 
-        public RuntimeViewModel(PropertyResolverRepository propertyResolverRepository)
+        public ScriptableViewModel(PropertyResolverRepository propertyResolverRepository)
         {
             onPropertyChanged = new Subject<PropertyChanged>();
             

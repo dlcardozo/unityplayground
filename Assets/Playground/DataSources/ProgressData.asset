@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ProgressData
   m_EditorClassIdentifier: 
   Progress:
-    value: 2147483647
+    value: 123
   Name:
-    value: asdsadsdsasa
+    value: Well done with the delegates!

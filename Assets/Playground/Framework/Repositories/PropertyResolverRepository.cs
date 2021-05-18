@@ -1,5 +1,5 @@
 using System;
-using Playground.Framework.Resolvers;
+using Playground.Framework.Properties;
 
 namespace Playground.Framework.Repositories
 {

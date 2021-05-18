@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 
-namespace Playground.Framework.Resolvers
+namespace Playground.Framework.Properties
 {
     public class PropertyHelper
     {

@@ -531,6 +531,37 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1025845190892040581, guid: 1d595d860d6034a69813d4176460a566,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025845190892040581, guid: 1d595d860d6034a69813d4176460a566,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025845190892040581, guid: 1d595d860d6034a69813d4176460a566,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025845190892040581, guid: 1d595d860d6034a69813d4176460a566,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 98d3ca96568c943b2b14457502a7e6c2,
+        type: 2}
+    - target: {fileID: 1025845190892040581, guid: 1d595d860d6034a69813d4176460a566,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AdvanceProgress
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025845190892040581, guid: 1d595d860d6034a69813d4176460a566,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1025845191087971025, guid: 1d595d860d6034a69813d4176460a566,
         type: 3}
       propertyPath: m_AnchorMin.y

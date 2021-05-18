@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Playground.Framework.Resolvers
+namespace Playground.Framework.Properties
 {
     public interface PropertyResolver
     {

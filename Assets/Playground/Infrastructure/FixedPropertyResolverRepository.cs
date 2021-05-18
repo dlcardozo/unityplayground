@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Playground.Framework.Properties;
 using Playground.Framework.Repositories;
-using Playground.Framework.Resolvers;
 using UniRx;
 
 namespace Playground.Infrastructure

@@ -12,6 +12,6 @@ namespace Playground.Example.Domain.Actions
             this.onProgressUpdated = onProgressUpdated;
         }
 
-        public void Do() => onProgressUpdated.OnNext(new Progress(45, 999));
+        public void Do(int lastProgress) => onProgressUpdated.OnNext(new Progress(lastProgress + 1, 999));
     }
 }

@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Reflection;
-using Playground.Framework.Resolvers;
+using Playground.Framework.Properties;
 using UniRx;
 using UnityEngine;
 using static System.Convert;
@@ -9,7 +9,7 @@ namespace Playground.Framework.Bindings
 {
     public class BindingComponent : MonoBehaviour
     {
-        public PersistedViewModel ViewModel;
+        public ScriptableViewModel ViewModel;
         public string ViewModelProperty;
 
         public GameObject Target;
