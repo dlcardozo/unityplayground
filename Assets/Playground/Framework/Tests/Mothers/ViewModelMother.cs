@@ -1,12 +1,13 @@
+using Playground.Framework.Repositories;
 using UniRx;
 
 namespace Playground.Framework.Tests.Mothers
 {
     public static class ViewModelMother
     {
-        public static ViewModel SomeViewModel()
+        public static ViewModel SomeViewModel(PropertyResolverRepository propertyResolverRepository)
         {
-            return new SomeViewModel();
+            return new SomeViewModel(propertyResolverRepository);
         }
     }
     
@@ -16,5 +17,9 @@ namespace Playground.Framework.Tests.Mothers
         public ISubject<PropertyChanged> onPropertyChanged { get; set; }
 
         public object GetValueOf(string viewModelProperty) => throw new System.NotImplementedException();
+
+        public SomeViewModel(PropertyResolverRepository propertyResolverRepository) : base(propertyResolverRepository)
+        {
+        }
     }
 }

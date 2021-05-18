@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23813eb7096413d8def99b2844fec1a, type: 3}
-  m_Name: ProgressData
+  m_Script: {fileID: 11500000, guid: 7652d6cdd5a548a1b68778afec38c71b, type: 3}
+  m_Name: ProgressDataSource
   m_EditorClassIdentifier: 
-  Progress:
-    value: 123
-  Name:
-    value: Well done with the delegates!

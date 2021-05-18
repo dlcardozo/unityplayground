@@ -9,7 +9,7 @@ namespace Playground.Framework.Bindings
 {
     public class BindingComponent : MonoBehaviour
     {
-        public ScriptableViewModel ViewModel;
+        public ViewModel ViewModel;
         public string ViewModelProperty;
 
         public GameObject Target;

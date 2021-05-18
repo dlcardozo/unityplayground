@@ -25,8 +25,8 @@ namespace Playground.Framework.Tests
         [SetUp]
         public void Setup()
         {
-            viewModel = SomeViewModel();
             propertyResolverRepository = Substitute.For<PropertyResolverRepository>();
+            viewModel = SomeViewModel(propertyResolverRepository);
             somePropertyResolver = Substitute.For<PropertyResolver>();
             viewModelWiring = new ViewModelWiring(viewModel, propertyResolverRepository);
 
